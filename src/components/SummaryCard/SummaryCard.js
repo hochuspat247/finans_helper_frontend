@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#EBEBEB',
     borderRadius: 16,
     padding: 16,
-    width: 160,
+    width: 175,
     height: 110,
     justifyContent: 'space-between',
     shadowColor: '#000',
-    elevation: 3,
   },
   headerRow: {
     flexDirection: 'row',

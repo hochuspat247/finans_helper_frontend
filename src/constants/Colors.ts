@@ -3,4 +3,5 @@ export const Colors = {
   screenBackground: '#F7F7FA', // Цвет фона экрана
   cardBackground: '#EAEAEA',   // Цвет фона карточки
   textBlack: '#262626',     // Чёрный цвет текста
+  whiteBackground: "#F6F6F9"
 };

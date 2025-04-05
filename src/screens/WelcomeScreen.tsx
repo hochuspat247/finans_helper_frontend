@@ -10,6 +10,10 @@ import PulseCard from '@components/PulseCard/PulseCard';
 import DaySummary from '@components/DaySummary/DaySummary';
 import FilterBar from '@components/FilterBar/FilterBar';
 import TransactionList from '@components/TransactionList/TransactionList';
+import DayTransactionSection from '@components/DayTransactionSection/DayTransactionSection';
+import OperationsTopPart from './operations/operationsTopPart';
+import TransactionHistory from './operations/TransactionHistory';
+import Operations from './operations/operations';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -64,23 +68,7 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
     // </ImageBackground>
 
     <View style={styles.container}>
-
-      <PulseCard />
-      <DaySummary label="Вчера" amount={2450} />
-      <DaySummary label="Неделя" amount={15000} />
-
-      <TransactionList transactions={transactions} />
-
-
-      <FilterBar />
-
-
-
-
-
-
-     
-      {/* <HeaderWithBack title="Операции" /> */}
+      <Operations />
     </View>
   );
 };
@@ -88,13 +76,12 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: Colors.whiteBackground,
   },
   container: {
     flex: 1,
-    paddingTop: 53,
-    paddingBottom: 53,
-    paddingHorizontal: 15,
     justifyContent: 'space-between',
+    backgroundColor: Colors.whiteBackground,
   },
   buttons: {
     gap: 8,

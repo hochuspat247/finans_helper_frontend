@@ -26,7 +26,6 @@ const TransactionList = ({ transactions = [] }) => {
 
 const styles = StyleSheet.create({
   list: {
-    paddingVertical: 8,
   },
 });
 
