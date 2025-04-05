@@ -5,6 +5,7 @@ import { Colors } from '@constants/Colors';
 import TogglePanel from '@components/TogglePanel/TogglePanel';
 import SemiCircleChart from '@components/SemiCircleChart';
 import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
+import ScreenChartCircle from './ScreenChartCircle';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -38,7 +39,7 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
   return (
 
     <View style={styles.container}>
-      <PanelChartCircle />
+      <ScreenChartCircle />
     </View>
 
   );
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     backgroundColor: Colors.whiteBackground,
-    padding: 16,
   },
   buttons: {
     gap: 8,

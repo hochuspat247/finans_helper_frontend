@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import { SafeAreaView, FlatList, View } from 'react-native';
 import { styles } from './styled';
 
 interface ScreenProps {
@@ -8,14 +8,18 @@ interface ScreenProps {
 }
 
 const Screen = ({ children, noPaddingTop = false }: ScreenProps) => {
+  // Преобразуем children в массив для FlatList
+  const data = React.Children.toArray(children);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView
+      <FlatList
+        data={data}
+        renderItem={({ item }) => <View>{item}</View>}
+        keyExtractor={(_, index) => index.toString()}
         contentContainerStyle={[styles.container, noPaddingTop && { paddingTop: 0 }]}
         showsVerticalScrollIndicator={false}
-      >
-        {children}
-      </ScrollView>
+      />
     </SafeAreaView>
   );
 };
