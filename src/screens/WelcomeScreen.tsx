@@ -1,19 +1,10 @@
 // src/screens/WelcomeScreen.tsx
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
-import Button from '@components/Button';
 import { Colors } from '@constants/Colors';
-import HeaderWithBack from '@components/HeaderWithBack/HeaderWithBack';
-import TransactionItem from '@components/TransactionItem/TransactionItem';
-import SummaryCard from '@components/SummaryCard/SummaryCard';
-import PulseCard from '@components/PulseCard/PulseCard';
-import DaySummary from '@components/DaySummary/DaySummary';
-import FilterBar from '@components/FilterBar/FilterBar';
-import TransactionList from '@components/TransactionList/TransactionList';
-import DayTransactionSection from '@components/DayTransactionSection/DayTransactionSection';
-import OperationsTopPart from './operations/operationsTopPart';
-import TransactionHistory from './operations/TransactionHistory';
-import Operations from './operations/operations';
+import TogglePanel from '@components/TogglePanel/TogglePanel';
+import SemiCircleChart from '@components/SemiCircleChart';
+import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -45,31 +36,11 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
   ];
 
   return (
-    // <ImageBackground
-    //   source={require('../../assets/images/welcome-bg.png')}
-    //   style={styles.background}
-    //   resizeMode="cover"
-    // >
-    //   <View style={styles.container}>
-    //     <Text style={styles.title}>Добро пожаловать на платформу!</Text>
-
-    //     <View style={styles.buttons}>
-    //       <Button
-    //         title="Регистрация"
-    //         onPress={() => navigation.navigate('Register')}
-    //         disabled={true}
-    //       />
-    //       <Button
-    //         title="Войти"
-    //         onPress={() => navigation.navigate('Login')}
-    //       />
-    //     </View>
-    //   </View>
-    // </ImageBackground>
 
     <View style={styles.container}>
-      <Operations />
+      <PanelChartCircle />
     </View>
+
   );
 };
 
@@ -82,6 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     backgroundColor: Colors.whiteBackground,
+    padding: 16,
   },
   buttons: {
     gap: 8,
