@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import 'react-native-screens'; 
+import { useFonts } from 'expo-font';
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,6 +21,12 @@ const App = () => {
   const handleLogout = () => {
     setIsAuthenticated(false);
   };
+
+  const [fontsLoaded] = useFonts({
+    SFPro: require('./assets/fonts/SF-Pro-Display-Regular.otf'),
+  });
+
+  if (!fontsLoaded) return null;
 
   return (
     <SafeAreaProvider>

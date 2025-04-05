@@ -9,7 +9,8 @@ config.resolver.extraNodeModules = {
   '@constants': `${__dirname}/src/constants`,
   '@navigation': `${__dirname}/src/navigation`,
   '@screens': `${__dirname}/src/screens`,
-  '@types': `${__dirname}/src/types`
+  '@types': `${__dirname}/src/types`,
+  '@assets': `${__dirname}/assets`
 };
 
 module.exports = config;
