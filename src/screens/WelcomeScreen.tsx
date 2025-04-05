@@ -4,11 +4,42 @@ import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import Button from '@components/Button';
 import { Colors } from '@constants/Colors';
 import HeaderWithBack from '@components/HeaderWithBack/HeaderWithBack';
+import TransactionItem from '@components/TransactionItem/TransactionItem';
 import SummaryCard from '@components/SummaryCard/SummaryCard';
 import PulseCard from '@components/PulseCard/PulseCard';
 import DaySummary from '@components/DaySummary/DaySummary';
+import FilterBar from '@components/FilterBar/FilterBar';
+import TransactionList from '@components/TransactionList/TransactionList';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
+
+  const transactions = [
+    {
+      type: 'переводМ',
+      category: 'Переводы',
+      description: 'Перевод между счетами',
+      amount: 200,
+    },
+    {
+      type: 'досуг',
+      category: 'Досуг',
+      description: 'Покупка билетов',
+      amount: 3000,
+    },
+    {
+      type: 'супермаркеты',
+      category: 'Супермаркеты',
+      description: 'Продукты',
+      amount: 200,
+    },
+    {
+      type: 'переводы',
+      category: 'Переводы',
+      description: 'Арина Ш.',
+      amount: 60,
+    },
+  ];
+
   return (
     // <ImageBackground
     //   source={require('../../assets/images/welcome-bg.png')}
@@ -35,7 +66,16 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
     <View style={styles.container}>
 
       <PulseCard />
-      <DaySummary amount={3460} />
+      <DaySummary label="Вчера" amount={2450} />
+      <DaySummary label="Неделя" amount={15000} />
+
+      <TransactionList transactions={transactions} />
+
+
+      <FilterBar />
+
+
+
 
 
 

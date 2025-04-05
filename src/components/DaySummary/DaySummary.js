@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const DaySummary = ({ amount }) => {
+const DaySummary = ({ label = 'Сегодня', amount = 0 }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Сегодня</Text>
+      <Text style={styles.text}>{label}</Text>
       <View style={styles.line} />
       <Text style={styles.text}>
         {amount.toLocaleString('ru-RU')} ₽
@@ -15,7 +15,7 @@ const DaySummary = ({ amount }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     color: '#232323',
-    fontFamily: 'SFPro', // SF Pro Display
+    fontFamily: 'SFPro',
   },
   line: {
     flex: 1,
     height: 1,
-    marginTop: 3, 
+    marginTop: 3,
     backgroundColor: '#BDBDBD',
     marginHorizontal: 12,
   },

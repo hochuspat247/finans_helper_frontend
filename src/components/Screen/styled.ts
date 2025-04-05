@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 53,
-    paddingHorizontal: 22,
+    paddingTop: 48,
+    paddingHorizontal: 16,
   },
 });

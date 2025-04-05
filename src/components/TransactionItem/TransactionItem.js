@@ -2,12 +2,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-const TransactionItem = ({ icon, category, description, amount }) => {
+const TransactionItem = ({ type, category, description, amount }) => {
+  const getIconByType = () => {
+    switch (type) {
+      case 'переводМ':
+        return require('@assets/icons/solar_card-transfer-bold.png');
+      case 'супермаркеты':
+        return require('@assets/icons/solar_tag-horizontal-bold.png');
+      case 'досуг':
+        return require('@assets/icons/solar_ticket-bold.png');
+      case 'переводы':
+        return require('@assets/icons/solar_tag-horizontal-bold (1).png');
+      default:
+        return require('@assets/icons/solar_card-transfer-bold.png');
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.iconWrapper}>
-          <Image source={icon} style={styles.icon} />
+          <Image source={getIconByType()} style={styles.icon} />
         </View>
         <View style={styles.textBlock}>
           <Text style={styles.category}>{category}</Text>
@@ -67,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TransactionItem;
+export default TransactionItem
