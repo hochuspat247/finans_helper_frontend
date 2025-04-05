@@ -6,8 +6,13 @@ import TogglePanel from '@components/TogglePanel/TogglePanel';
 import SemiCircleChart from '@components/SemiCircleChart';
 import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
 import ScreenChartCircle from './ScreenCharts';
-import HistogramChart from '@components/HistogramChart/index (2)';
+import HistogramChart from '@components/HistogramChart/HistogramChart';
 import ScreenCharts from './ScreenCharts';
+import Operations from './operations/operations';
+import PulseHeader from '@components/PulseHeader/PulseHeader';
+import TotalMoneyCard from '@components/TotalMoneyCard/TotalMoneyCard';
+import PulseSummaryBlock from '@components/PulseSummaryBlock/PulseSummaryBlock';
+import PulseScreen from './PulseScreen';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -41,7 +46,11 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
   return (
 
     <View style={styles.container}>
-      <ScreenCharts />
+      {/* <ScreenCharts /> */}
+      {/* <Operations /> */}
+      {/* <PulseHeader /> */}
+      {/* <PulseSummaryBlock total={654220}/> */}
+      <PulseScreen total={654220}/>
     </View>
 
   );
