@@ -50,8 +50,8 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
       {/* <Operations /> */}
       {/* <PulseHeader /> */}
       {/* <PulseSummaryBlock total={654220}/> */}
-      <PulseScreen total={654220}/>
-    </View>
+      <PulseScreen total={654220} income={123000} expenses={65400} />
+      </View>
 
   );
 };

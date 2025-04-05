@@ -1,5 +1,8 @@
+import ForecastChart from '@components/ForecastChart/index (4)';
 import PulseHeader from '@components/PulseHeader/PulseHeader';
+import SummaryCard from '@components/SummaryCard/SummaryCard';
 import TotalMoneyCard from '@components/TotalMoneyCard/TotalMoneyCard';
+import Screen from '@components/Screen';
 import React from 'react';
 import {
   View,
@@ -8,27 +11,50 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-
-
+import { ScrollView } from 'react-native-gesture-handler';
+import IncomeBalanceCard from '@components/IncomeBalanceCard/IncomeBalanceCard';
+import InvestmentCard from '@components/InvestmentCard/InvestmentCard';
+import FixedExpensesCard from '@components/FixedExpensesCard/FixedExpensesCard';
 
 interface Props {
   total: number;
+  income: number;
+  expenses: number;
 }
 
-const PulseScreen: React.FC<Props> = ({ total }) => {
+const PulseScreen: React.FC<Props> = ({ total, income, expenses }) => {
   return (
-    <SafeAreaView style={styles.safe}>
-      <ImageBackground
-        source={require('@assets/icons/Frame 2087326610.png')} // ← сюда помести нужное фоновое изображение
-        style={styles.background}
-        imageStyle={styles.imageStyle}
-      >
-        <View style={styles.overlay}>
-          <PulseHeader />
-          <TotalMoneyCard total={total} />
-        </View>
-      </ImageBackground>
-    </SafeAreaView>
+   
+        <ScrollView>
+        <SafeAreaView style={styles.safe}>
+            <ImageBackground
+                source={require('@assets/icons/Frame 2087326610.png')}
+                imageStyle={styles.imageStyle}
+            >
+                <View style={styles.contentWrapper}>
+                {/* Верхняя часть */}
+                    <View style={styles.overlay}>
+                        <PulseHeader />
+                        <TotalMoneyCard total={total} />
+                    </View>
+
+                    {/* Нижняя часть */}
+                    <View style={styles.summaryRow}>
+                        <SummaryCard type="expenses" amount={expenses} />
+                        <SummaryCard type="income" amount={income} />
+                    </View>
+                    <ForecastChart style={{marginTop: width * 0.04 }}/>
+                    <View style={styles.summaryRow1}>
+                        <IncomeBalanceCard value={10000} />
+                        <InvestmentCard percentage="72,5%" change="+0,10 (+0,13%)" />
+                    </View>
+                    <View style={styles.summaryRow2}><FixedExpensesCard amount={5676} /></View>
+                </View>
+            </ImageBackground>
+        </SafeAreaView>
+        </ScrollView>
+   
+
   );
 };
 
@@ -37,29 +63,44 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F6F6F9', // 👈 новый фон
   },
-  background: {
-    flex: 1,
-    width,
-    height,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+ 
   imageStyle: {
     resizeMode: 'cover',
     position: 'absolute',
-    width,
-    height,
+    width: '130%',
+    height: '100%',
+    top: '-29%',
+    left: '-20%',
+  },
+  contentWrapper: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 24,
+    paddingBottom: 32,
+    alignItems: "center",
   },
   overlay: {
-    paddingTop: 24,
-    paddingHorizontal: 16,
     alignItems: 'center',
     gap: 12,
-    flex: 1,
-    width: '100%',
   },
+  summaryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
+    marginTop: "45%",
+  },
+  summaryRow1: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
+    marginTop: width * 0.04 ,
+  },
+  summaryRow2: {
+    marginTop: width * 0.04 ,
+    width:'100%',
+  }, 
 });
 
 export default PulseScreen;
