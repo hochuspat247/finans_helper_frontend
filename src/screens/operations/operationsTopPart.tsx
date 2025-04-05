@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   },
   summaryRow: {
     flexDirection: 'row',
+    flex: 1,
     justifyContent: 'space-between',
     gap: 16,
   },
