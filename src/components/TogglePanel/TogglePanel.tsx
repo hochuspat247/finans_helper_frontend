@@ -3,9 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const periods = ['Нед', 'Мес', 'Год'];
 
-const TogglePanel = () => {
+interface TogglePanelProps {
+  isChart: boolean;
+  setIsChart: (value: boolean) => void;
+}
+
+const TogglePanel: React.FC<TogglePanelProps> = ({ isChart, setIsChart }) => {
   const [activeIndex, setActiveIndex] = useState(1); // 'Мес' по умолчанию
-  const [isChart, setIsChart] = useState(true); // Активный блок иконок
 
   return (
     <View style={styles.container}>
@@ -22,11 +26,11 @@ const TogglePanel = () => {
           if (isActive) {
             buttonStyle.push(styles.buttonActive);
             textStyle.push(styles.textActive);
-          } else if (isLeft) {
-            buttonStyle.push(styles.buttonRightInactive); // теперь "светлее"
           } else if (isRight) {
-            buttonStyle.push(styles.buttonLeftInactive); // теперь "темнее"
-          }          
+            buttonStyle.push(styles.buttonRightInactive); // светлее
+          } else if (isLeft) {
+            buttonStyle.push(styles.buttonLeftInactive); // темнее
+          }
 
           return (
             <TouchableOpacity
@@ -40,16 +44,14 @@ const TogglePanel = () => {
         })}
       </View>
 
-      <View style={{width: "10%"}}></View>
-
       {/* Блок с иконками */}
       <View style={styles.iconGroup}>
         <TouchableOpacity onPress={() => setIsChart(false)}>
           <Image
             source={
               isChart
-                ? require('@assets/icons/Group.png')
-                : require('@assets/icons/Component 3.png')
+                ? require('@assets/icons/Group.png') // НЕактивная иконка времени
+                : require('@assets/icons/Component 3.png') // АКТИВНАЯ иконка времени
             }
             style={styles.icon}
           />
@@ -58,8 +60,8 @@ const TogglePanel = () => {
           <Image
             source={
               isChart
-                ? require('@assets/icons/Component 4.png')
-                : require('@assets/icons/Component 4 (1).png')
+                ? require('@assets/icons/Component 4.png') // АКТИВНАЯ иконка круговой
+                : require('@assets/icons/Component 4 (1).png') // НЕактивная иконка круговой
             }
             style={styles.icon}
           />
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   buttonGroup: {
     flexDirection: 'row',
@@ -90,21 +92,15 @@ const styles = StyleSheet.create({
   },
   buttonActive: {
     backgroundColor: '#000',
-    paddingHorizontal: 24,
-    paddingVertical: 14,
-
   },
   buttonLeftInactive: {
     backgroundColor: '#F7F9FB',
-    boxShadow: 'inset 0px 0px 2px rgba(0,0,0,0.1)', // не работает в RN, но оставлю как примечание
-    paddingHorizontal: 24,
-    paddingVertical: 14,
+    opacity: 0.2,
   },
   buttonRightInactive: {
     backgroundColor: '#F7F9FB',
-    opacity: 0.2,
-    paddingHorizontal: 24,
-    paddingVertical: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.05)',
   },
   textBase: {
     fontSize: 12,

@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   centerTextContainer: {
     position: 'absolute',
     alignItems: 'center',
-    left: 60,
+    left: "32%",
   },
   centerText: {
     fontSize: 16,

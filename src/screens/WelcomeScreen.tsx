@@ -5,7 +5,9 @@ import { Colors } from '@constants/Colors';
 import TogglePanel from '@components/TogglePanel/TogglePanel';
 import SemiCircleChart from '@components/SemiCircleChart';
 import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
-import ScreenChartCircle from './ScreenChartCircle';
+import ScreenChartCircle from './ScreenCharts';
+import HistogramChart from '@components/HistogramChart/index (2)';
+import ScreenCharts from './ScreenCharts';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -39,7 +41,7 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
   return (
 
     <View style={styles.container}>
-      <ScreenChartCircle />
+      <ScreenCharts />
     </View>
 
   );

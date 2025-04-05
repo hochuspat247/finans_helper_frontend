@@ -1,8 +1,11 @@
-import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
-import React from 'react';
+
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import TransactionHistory from './operations/TransactionHistory';
 import Screen from '@components/Screen';
+import TogglePanel from '@components/TogglePanel/TogglePanel';
+import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
+import ChartSwitcherBlock from '@components/ChartSwitcherBlock/ChartSwitcherBlock';
 
 
 const groupedTransactions = [
@@ -22,16 +25,17 @@ const groupedTransactions = [
       { id: 4, title: 'Кофе', amount: 300 },
     ],
   },
-  // ...другие дни
 ];
 
-const ScreenChartCircle: React.FC = () => {
+const ScreenCharts: React.FC = () => {
+  const [isChart, setIsChart] = useState(true); // true = круговой, false = столбчатый
+
   return (
     <Screen>
-        <View style={styles.container}>
-            <PanelChartCircle />
-            <TransactionHistory groupedTransactions={groupedTransactions} />
-        </View>
+      <View style={styles.container}>
+        <ChartSwitcherBlock />
+        <TransactionHistory groupedTransactions={groupedTransactions} />
+      </View>
     </Screen>
   );
 };
@@ -43,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScreenChartCircle;
+export default ScreenCharts;
