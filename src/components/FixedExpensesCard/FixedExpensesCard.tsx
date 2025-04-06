@@ -18,11 +18,15 @@ const FixedExpensesCard: React.FC<FixedExpensesCardProps> = ({
         <View style={styles.categoryRow}>
           <Image
             source={require('@assets/icons/image (1).png')} // замени на свои иконки
-            style={styles.icon}
+            style={styles.icon1}
           />
           <Image
-            source={require('@assets/icons/image (2).png')}
-            style={styles.icon}
+            source={require('@assets/icons/image (2).png')} // замени на свои иконки
+            style={styles.icon2}
+          />
+          <Image
+            source={require('@assets/icons/image (3).png')}
+            style={styles.icon3}
           />
           <Text style={styles.categoryText}>{categoryCount} категорий</Text>
         </View>
@@ -59,9 +63,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
   },
-  icon: {
+  icon1: {  
+    zIndex: 3,
     width: 20,
     height: 20,
+    borderRadius: 10,
+  },
+  icon2: {
+    zIndex: 2,
+    width: 20,
+    height: 20,
+    marginLeft: "-6%",
+    borderRadius: 10,
+  },
+  icon3: {
+    zIndex: 1,
+    width: 20,
+    height: 20,
+    marginLeft: "-6%",
     borderRadius: 10,
   },
   categoryText: {

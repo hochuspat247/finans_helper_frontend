@@ -13,6 +13,13 @@ import PulseHeader from '@components/PulseHeader/PulseHeader';
 import TotalMoneyCard from '@components/TotalMoneyCard/TotalMoneyCard';
 import PulseSummaryBlock from '@components/PulseSummaryBlock/PulseSummaryBlock';
 import PulseScreen from './PulseScreen';
+import ScreenAllMoney from './ScreenAllMoney';
+import TransactionCard from '@components/TransactionCard';
+import ActionButtons from '@components/ActionButtons';
+import TaxDeductionSummary from '@components/Nal';
+import InfoBlock from '@components/InfoBlock';
+import CategoryScreen from './CategoryScreen';
+import EmptyCategoryCard from '@components/EmptyCategoryCard';
 
 const WelcomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -50,7 +57,24 @@ const WelcomeScreen = ({ navigation }: { navigation: any }) => {
       {/* <Operations /> */}
       {/* <PulseHeader /> */}
       {/* <PulseSummaryBlock total={654220}/> */}
-      <PulseScreen total={654220} income={123000} expenses={65400} />
+      {/* <PulseScreen total={654220} income={123000} expenses={65400} /> */}
+      {/* <ScreenAllMoney /> */}
+      {/* <TransactionCard
+        title="REG.RU"
+        category="Связь"
+        mcc="4814"
+        amount={654220}
+      /> */}
+
+      {/* <ActionButtons /> */}
+
+      {/* <TaxDeductionSummary/> */}
+
+      {/* <ScreenAllMoney/> */} 
+      {/* <CategoryScreen /> */}
+
+      <EmptyCategoryCard />
+
       </View>
 
   );
@@ -63,7 +87,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'space-between',
     backgroundColor: Colors.whiteBackground,
   },
   buttons: {

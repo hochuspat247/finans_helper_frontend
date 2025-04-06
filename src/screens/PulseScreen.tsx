@@ -15,6 +15,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import IncomeBalanceCard from '@components/IncomeBalanceCard/IncomeBalanceCard';
 import InvestmentCard from '@components/InvestmentCard/InvestmentCard';
 import FixedExpensesCard from '@components/FixedExpensesCard/FixedExpensesCard';
+import SemiCircleRating from '@components/CreditRating/index (5)';
+import FinanceRadar from '@components/FinanceRadar';
 
 interface Props {
   total: number;
@@ -49,6 +51,8 @@ const PulseScreen: React.FC<Props> = ({ total, income, expenses }) => {
                         <InvestmentCard percentage="72,5%" change="+0,10 (+0,13%)" />
                     </View>
                     <View style={styles.summaryRow2}><FixedExpensesCard amount={5676} /></View>
+                    <View style={styles.summaryRow2}><SemiCircleRating score={350} status='Надежный'/></View>
+                    <View style={styles.summaryRow2}><FinanceRadar /></View>
                 </View>
             </ImageBackground>
         </SafeAreaView>
@@ -69,10 +73,10 @@ const styles = StyleSheet.create({
   imageStyle: {
     resizeMode: 'cover',
     position: 'absolute',
-    width: '130%',
-    height: '100%',
-    top: '-29%',
-    left: '-20%',
+    width: '110%',
+    height: '60%',
+    top: '-20%',
+    left: '-10%',
   },
   contentWrapper: {
     flex: 1,

@@ -18,7 +18,6 @@ export const AuthNavigator = ({ onVerificationSuccess }: AuthNavigatorProps) => 
       <Stack.Screen
         name="Операция"
         component={WelcomeScreen}
-        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Login"
