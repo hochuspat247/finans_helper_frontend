@@ -1,15 +1,11 @@
 import 'react-native-gesture-handler';
-import 'react-native-screens'; 
+import 'react-native-screens';
 import { useFonts } from 'expo-font';
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AuthNavigator } from '@navigation/AuthNavigator';
-import { PlayerNavigator } from '@navigation/PlayerNavigator';
+import { Navigator } from '@navigation/Navigator';
 import { BookingProvider } from './src/context/BookingContext';
-
-const Stack = createStackNavigator();
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,22 +28,11 @@ const App = () => {
     <SafeAreaProvider>
       <BookingProvider>
         <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-              animationEnabled: false // Отключаем анимации
-            }}
-          >
-            {isAuthenticated ? (
-              <Stack.Screen name="Player">
-                {() => <PlayerNavigator onLogout={handleLogout} />}
-              </Stack.Screen>
-            ) : (
-              <Stack.Screen name="Auth">
-                {() => <AuthNavigator onVerificationSuccess={handleVerificationSuccess} />}
-              </Stack.Screen>
-            )}
-          </Stack.Navigator>
+          <Navigator
+            isAuthenticated={isAuthenticated}
+            onVerificationSuccess={handleVerificationSuccess}
+            onLogout={handleLogout}
+          />
         </NavigationContainer>
       </BookingProvider>
     </SafeAreaProvider>

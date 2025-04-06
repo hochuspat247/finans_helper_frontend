@@ -21,14 +21,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
     borderRadius: 32,
-    paddingTop: 3,
-    paddingRight: 9,
     paddingBottom: 16,
-    paddingLeft: 9,
-    gap: 24, // расстояние между TogglePanel и графиком
   },
   chartWrapper: {
     alignItems: 'center',
+    overflow: 'hidden', // Обрезает содержимое, выходящее за границы
   },
 });
 

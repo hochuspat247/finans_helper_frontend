@@ -20,12 +20,7 @@ const EnoughForCard: React.FC<EnoughForCardProps> = ({
             <Text style={styles.monthText}>{months} месяца</Text>
           </View>
         </View>
-        <TouchableOpacity >
-          <Image
-            source={require('@assets/icons/gg_info (1).png')}
-            style={styles.infoIcon}
-          />
-        </TouchableOpacity>
+  
       </View>
 
       {/* Подпись */}

@@ -73,10 +73,10 @@ const TogglePanel: React.FC<TogglePanelProps> = ({ isChart, setIsChart }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 24,
   },
   buttonGroup: {
     flexDirection: 'row',

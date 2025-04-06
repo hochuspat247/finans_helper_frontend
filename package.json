@@ -1,5 +1,5 @@
 {
-  "name": "tennis-project",
+  "name": "fin-tech",
   "license": "0BSD",
   "version": "1.0.0",
   "main": "index.ts",
@@ -19,7 +19,6 @@
     "expo": "~52.0.42",
     "expo-blur": "~14.0.3",
     "expo-build-properties": "~0.13.2",
-    "expo-dev-client": "~5.0.19",
     "expo-file-system": "~18.0.12",
     "expo-image-picker": "~16.0.6",
     "expo-print": "~14.0.3",
@@ -27,11 +26,12 @@
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
     "react-native": "0.76.9",
+    "react-native-chart-kit": "^6.12.0",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
-    "whatwg-url": "^14.2.0",
-    "react-native-svg": "15.8.0"
+    "react-native-svg": "15.8.0",
+    "whatwg-url": "^14.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

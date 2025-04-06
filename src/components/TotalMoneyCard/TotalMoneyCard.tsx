@@ -2,27 +2,20 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 interface Props {
-  total: number; // число, которое будет отображаться
+  total?: number; // Добавляем опциональность через "?"
 }
 
-const TotalMoneyCard: React.FC<Props> = ({ total }) => {
+const TotalMoneyCard: React.FC<Props> = ({ total = 0 }) => {
   return (
     <View style={styles.container}>
-      {/* Иконка сверху */}
       <Image
         source={require('@assets/icons/solar_graph-new-bold.png')}
         style={styles.icon}
       />
-
-      {/* Подпись */}
-      <Text style={styles.label}>Денег всего</Text>
-
-      {/* Сумма */}
+      <Text style={styles.label}>Денег всего |</Text>
       <Text style={styles.amount}>
         {total.toLocaleString('ru-RU')} ₽
       </Text>
-
-      {/* Кнопка */}
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Хорошо</Text>
       </TouchableOpacity>
@@ -56,7 +49,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: -1.92,
     textAlign: 'center',
-    marginBottom: 25, // ← расстояние между суммой и кнопкой
+    marginBottom: 25,
   },
   button: {
     backgroundColor: 'rgba(185, 209, 193, 0.64)',

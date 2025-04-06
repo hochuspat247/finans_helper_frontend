@@ -1,11 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const PulseHeader: React.FC = () => {
+  const navigation = useNavigation(); // Хук для доступа к навигации
+
+  // Функция для возврата на предыдущий экран
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       {/* Кнопка "назад" */}
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
         <Image
           source={require('@assets/icons/icon-park-outline_down (1).png')} // или используйте Text: "<"
           style={styles.backIcon}

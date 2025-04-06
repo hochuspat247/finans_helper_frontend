@@ -1,104 +1,152 @@
-// src/screens/WelcomeScreen.tsx
-import React from 'react';
-import { View, Text, ImageBackground, StyleSheet } from 'react-native';
-import { Colors } from '@constants/Colors';
-import TogglePanel from '@components/TogglePanel/TogglePanel';
-import SemiCircleChart from '@components/SemiCircleChart';
-import PanelChartCircle from '@components/PanelChartCircle/PanelChartCircle';
-import ScreenChartCircle from './ScreenCharts';
-import HistogramChart from '@components/HistogramChart/HistogramChart';
-import ScreenCharts from './ScreenCharts';
-import Operations from './operations/operations';
-import PulseHeader from '@components/PulseHeader/PulseHeader';
-import TotalMoneyCard from '@components/TotalMoneyCard/TotalMoneyCard';
-import PulseSummaryBlock from '@components/PulseSummaryBlock/PulseSummaryBlock';
-import PulseScreen from './PulseScreen';
-import ScreenAllMoney from './ScreenAllMoney';
-import TransactionCard from '@components/TransactionCard';
-import ActionButtons from '@components/ActionButtons';
-import TaxDeductionSummary from '@components/Nal';
-import InfoBlock from '@components/InfoBlock';
-import CategoryScreen from './CategoryScreen';
-import EmptyCategoryCard from '@components/EmptyCategoryCard';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import TransactionHistory from '@components/TransactionHistory';
+import DashboardHeader from '@components/DashboardHeader';
+import PulseCard from '@components/PulseCard/PulseCard';
+import Screen from '@components/Screen';
 
-const WelcomeScreen = ({ navigation }: { navigation: any }) => {
+const Operations = () => {
+  const navigation = useNavigation();
+  const [groupedTransactions, setGroupedTransactions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // Для индикации загрузки
 
-  const transactions = [
-    {
-      type: 'переводМ',
-      category: 'Переводы',
-      description: 'Перевод между счетами',
-      amount: 200,
-    },
-    {
-      type: 'досуг',
-      category: 'Досуг',
-      description: 'Покупка билетов',
-      amount: 3000,
-    },
-    {
-      type: 'супермаркеты',
-      category: 'Супермаркеты',
-      description: 'Продукты',
-      amount: 200,
-    },
-    {
-      type: 'переводы',
-      category: 'Переводы',
-      description: 'Арина Ш.',
-      amount: 60,
-    },
-  ];
+  // Функция для получения данных из API
+  const fetchTransactions = async () => {
+    setIsLoading(true); // Показываем, что идёт загрузка
+    try {
+      const response = await fetch('http://90.156.227.120:8080/rest/transactions?time=2025-04-06T10:15:30Z');
+      const data = await response.json();
+      
+      // Преобразуем данные в нужный формат
+      const transformedData = transformTransactions(data);
+      setGroupedTransactions(transformedData);
+    } catch (error) {
+      console.error('Ошибка при загрузке транзакций:', error);
+    } finally {
+      setIsLoading(false); // Убираем индикацию загрузки
+    }
+  };
+
+  // Преобразование данных из API в формат groupedTransactions с датами
+  const transformTransactions = (data) => {
+    const grouped = {};
+
+    data.forEach((item) => {
+      const transaction = item.elements[0];
+      const date = new Date(transaction.date);
+      const label = date.toISOString().split('T')[0]; // Берём только дату без времени
+
+      if (!grouped[label]) {
+        grouped[label] = { label, amount: 0, transactions: [] };
+      }
+
+      const type = transaction.type === 'ARRIVAL' ? 'income' : 'expense';
+      const amount = transaction.amount;
+
+      grouped[label].transactions.push({
+        type,
+        category: transaction.category,
+        description: transaction.nameSender,
+        amount,
+      });
+
+      grouped[label].amount += type === 'income' ? amount : -amount;
+    });
+
+    return Object.values(grouped);
+  };
+
+  // Загружаем данные при монтировании компонента
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
+
+  // Функция для ручного обновления
+  const handleRefresh = () => {
+    fetchTransactions();
+  };
+
+  // Функции навигации
+  const handleHeaderPress = () => {
+    navigation.navigate('ScreenCharts');
+  };
+
+  const handlePulsePress = () => {
+    navigation.navigate('PulseScreen');
+  };
+
+  const handleCategoryPress = () => {
+    navigation.navigate('CategoryScreen');
+  };
+
+  const handleEmptyCategoryCardPress = () => {
+    navigation.navigate('EmptyCategoryCard');
+  };
 
   return (
-
-    <View style={styles.container}>
-      {/* <ScreenCharts /> */}
-      {/* <Operations /> */}
-      {/* <PulseHeader /> */}
-      {/* <PulseSummaryBlock total={654220}/> */}
-      {/* <PulseScreen total={654220} income={123000} expenses={65400} /> */}
-      {/* <ScreenAllMoney /> */}
-      {/* <TransactionCard
-        title="REG.RU"
-        category="Связь"
-        mcc="4814"
-        amount={654220}
-      /> */}
-
-      {/* <ActionButtons /> */}
-
-      {/* <TaxDeductionSummary/> */}
-
-      {/* <ScreenAllMoney/> */} 
-      {/* <CategoryScreen /> */}
-
-      <EmptyCategoryCard />
-
+    <Screen>
+      <View>
+        <TouchableOpacity onPress={handleHeaderPress}>
+          <DashboardHeader expenses={10123} income={23456} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handlePulsePress}>
+          <PulseCard />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleEmptyCategoryCardPress}>
+          <Text style={styles.buttonText}>Категории</Text>
+        </TouchableOpacity>
+        {/* Кнопка обновления */}
+        <TouchableOpacity style={styles.refreshButton} onPress={handleRefresh} disabled={isLoading}>
+          <Text style={styles.refreshButtonText}>
+            {isLoading ? 'Загрузка...' : 'Обновить'}
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.spacer} />
+        <TouchableOpacity onPress={handleCategoryPress}>
+          <TransactionHistory groupedTransactions={groupedTransactions} />
+        </TouchableOpacity>
       </View>
-
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: Colors.whiteBackground,
+  spacer: {
+    height: 32,
   },
-  container: {
-    flex: 1,
-    backgroundColor: Colors.whiteBackground,
+  button: {
+    marginTop: 12,
+    marginHorizontal: 16,
+    backgroundColor: '#1C1B1B',
+    borderRadius: 61,
+    paddingHorizontal: 32,
+    paddingVertical: 20,
   },
-  buttons: {
-    gap: 8,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: Colors.white,
+  buttonText: {
+    color: '#FFF',
+    fontFamily: 'Manrope',
+    fontSize: 18,
+    fontWeight: '400',
+    letterSpacing: -0.041,
     textAlign: 'center',
-    marginTop: 20,
+  },
+  refreshButton: {
+    marginTop: 12,
+    marginHorizontal: 16,
+    backgroundColor: '#4CAF50', // Зелёный цвет для кнопки обновления
+    borderRadius: 61,
+    paddingHorizontal: 32,
+    paddingVertical: 20,
+  },
+  refreshButtonText: {
+    color: '#FFF',
+    fontFamily: 'Manrope',
+    fontSize: 18,
+    fontWeight: '400',
+    letterSpacing: -0.041,
+    textAlign: 'center',
   },
 });
 
-export default WelcomeScreen;
+export default Operations;
