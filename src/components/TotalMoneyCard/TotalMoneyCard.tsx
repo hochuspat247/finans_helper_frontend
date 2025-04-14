@@ -12,7 +12,7 @@ const TotalMoneyCard: React.FC<Props> = ({ total = 0 }) => {
         source={require('@assets/icons/solar_graph-new-bold.png')}
         style={styles.icon}
       />
-      <Text style={styles.label}>Денег всего |</Text>
+      <Text style={styles.label}>Денег всего</Text>
       <Text style={styles.amount}>
         {total.toLocaleString('ru-RU')} ₽
       </Text>

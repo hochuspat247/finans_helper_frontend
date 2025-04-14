@@ -25,7 +25,7 @@ interface Props {
   expenses?: number;
 }
 
-const PulseScreen: React.FC<Props> = ({ total = 0, income = 0, expenses = 0 }) => {
+const PulseScreen: React.FC<Props> = ({ total = 6000, income = 0, expenses = 0 }) => {
   const navigation = useNavigation(); // Хук для навигации
 
   // Функция для перехода на ScreenAllMoney

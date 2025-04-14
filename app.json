@@ -2,7 +2,7 @@
   "expo": {
     "name": "Avenir_финансы",
     "slug": "fin-tech",
-    "version": "1.0.1", 
+    "version": "3.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,7 +22,11 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.tennisproject.app",
-      "versionCode": 2 
+      "versionCode": 3,
+      "permissions": ["INTERNET"], 
+      "config": {
+        "usesCleartextTraffic": true 
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
